@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Advanced Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: yellow;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        button {
+            background-color: yellow;
+            color: black;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+
+        #confirmation-page {
+            display: none;
+        }
+    </style>
+</head>
+<body bgcolor="yellow" text="black">
+    <h2><marquee>Modassir  project2</marquee> </h2>
+    <center>
+    <h1>Department of Cse</h1> </center>
+    
+    <div class="container" id="registration-container">
+        <h2>Registration Form</h2>
+        <form id="registration-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="johndoe" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label>Gender:</label>
+            <input type="radio" id="male" name="gender" value="male"> <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female"> <label for="female">Female</label>
+            <input type="radio" id="other" name="gender" value="other"> <label for="other">Other</label>
+
+            <label for="profile-picture">Profile Picture:</label>
+            <input type="file" id="profile-picture" name="profile-picture">
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" placeholder="123 Main St">
+            <input type="text" id="city" name="city" placeholder="City">
+            <input type="text" id="state" name="state" placeholder="State">
+            <input type="text" id="zip" name="zip" placeholder="Zip Code">
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="123-456-7890">
+
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">I agree to the Terms and Conditions</label>
+
+            <div class="captcha"> <!-- You'll need to integrate a CAPTCHA service here. -->
+                <!-- CAPTCHA code here -->
+            </div>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <div class="container" id="confirmation-page">
+        <h2>Confirmation Page</h2>
+        <div id="confirmation-info">
+            <!-- User information will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        const registrationContainer = document.getElementById("registration-container");
+        const confirmationPage = document.getElementById("confirmation-page");
+        const confirmationInfo = document.getElementById("confirmation-info");
+
+        const registrationForm = document.getElementById("registration-form");
+
+        registrationForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Validate form inputs (you can enhance this)
+
+            // If all validations pass, you can simulate a successful registration.
+            showConfirmationPage();
+        });
+
+        function showConfirmationPage() {
+            registrationContainer.style.display = "none";
+            confirmationPage.style.display = "block";
+
+            // Display user information (this is just an example, you should save this data in the backend)
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const username = document.getElementById("username").value;
+            const dob = document.getElementById("dob").value;
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const address = document.getElementById("address").value;
+            const city = document.getElementById("city").value;
+            const state = document.getElementById("state").value;
+            const zip = document.getElementById("zip").value;
+            const phone = document.getElementById("phone").value;
+
+            confirmationInfo.innerHTML = `
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Username:</strong> ${username}</p>
+                <p><strong>Date of Birth:</strong> ${dob}</p>
+                <p><strong>Gender:</strong> ${gender}</p>
+                <p><strong>Address:</strong> ${address}, ${city}, ${state} ${zip}</p>
+                <p><strong>Phone Number:</strong> ${phone}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
